@@ -33,44 +33,9 @@ def get_db_connection():
     conn.row_factory = sqlite3.Row
     return conn
 
-
-
-# Input validation decorator
-def validate_complaint_input(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        data = request.get_json()
-
-        if not data:
-            return jsonify({
-                'error': 'Invalid JSON',
-                'message': 'Request body must contain valid JSON'
-            }), 400
-
-        # Check required fields
-        required_fields = ['name', 'phone_number', 'email', 'complaint_details']
-        errors = []
-
-        for field in required_fields:
-            if field not in data or not data[field] or not str(data[field]).strip():
-                errors.append(f'{field.replace("_", " ").title()} is required')
-
-        # If basic validation fails, return early
-        if errors:
-            return jsonify({
-                'error': 'Validation failed',
-                'details': errors
-            }), 400
-
-        return f(*args, **kwargs)
-
-    return decorated_function
-
-
 # API Endpoints
 
 @app.route('/complaints', methods=['POST'])
-@validate_complaint_input
 def create_complaint():
     try:
         data = request.get_json()
