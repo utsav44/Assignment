@@ -52,8 +52,8 @@ You need **Python 3.10+**.
 ### 2. Installation
 
 ```bash
-# Unzip the codebase
-unzip car_manual_rag.zip
+# Clone the github repository the codebase using below url
+https://github.com/utsav44/Assignment.git
 
 # Activate virtual environment
 python -m venv venv
@@ -68,7 +68,7 @@ Set your API keys. You can do this in a .env file or export them in your termina
 export OPENAI_API_KEY=""
 
 4. Local Model Setup (Recommended)
-To ensure stability and speed, it is recommended to download the embedding and reranking models locally instead of downloading them at runtime.
+It is recommended to download the embedding and reranking models locally instead of downloading them at runtime.
 Install Git LFS (if not already installed):
 git lfs install
 Clone the models:
